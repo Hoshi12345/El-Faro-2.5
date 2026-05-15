@@ -46,7 +46,9 @@ if (!function_exists('base_url')) {
     <h1 class="title is-4 has-text-black mt-2">Bienvenidos a periódico El Faro</h1>
     <div id="reloj-movil" class="tag is-dark is-medium mt-2">00:00:00</div>
     <!-- Nuevo botón modo oscuro -->
-    <button id="darkModeToggle" class="btn-dark-mode">🌙 Modo Oscuro</button>
+    <div style="background: red; color: white; padding: 5px;">
+    Botón de prueba
+</div>
   </div>
   
 </header>
