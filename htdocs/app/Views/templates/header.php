@@ -67,7 +67,7 @@ if (!function_exists('base_url')) {
         <div class="level-item">
           <div id="reloj" class="tag is-dark is-medium">00:00:00</div>
            <!-- Botón modo oscuro (estilos inline para probar) -->
-            <button id="darkModeToggle" class="btn-dark-mode">🌙 Modo Oscuro</button>
+           
 <button id="darkModeToggle" style="background: #007bff; color: white; border: none; border-radius: 5px; padding: 5px 10px; cursor: pointer; margin-top: 5px;">
     🌙 Modo Oscuro
 </button>
