@@ -126,3 +126,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+//boton tipo toggle dark mode //
+function myFunction() {
+  var element = document.body;
+  element.classList.toggle("dark-mode");
+}
