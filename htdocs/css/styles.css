@@ -705,7 +705,44 @@ label.contacto-label,
     color: #fff !important;
 }
 
-.dark-mode {
-  background-color: black;
-  color: white;
+/* Estilos base del botón */
+.btn-dark-mode {
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 20px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s, color 0.3s;
+    margin-top: 5px;
+}
+
+
+.btn-dark-mode:hover {
+    background-color: #ddd;
+}
+
+/* Clase que se agregará al body cuando esté en modo oscuro */
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+body.dark-mode .btn-dark-mode {
+    background-color: #333;
+    color: #eee;
+}
+
+body.dark-mode .btn-dark-mode:hover {
+    background-color: #444;
+}
+
+/* Ajusta otros elementos según necesites (tarjetas, enlaces, etc.) */
+body.dark-mode .noticia-card {
+    background-color: #1e1e1e;
+    color: #ccc;
+}
+
+body.dark-mode a {
+    color: #bb86fc;
 }

@@ -126,8 +126,34 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
-//boton tipo toggle dark mode //
-function myFunction() {
-  var element = document.body;
-  element.classList.toggle("dark-mode");
-}
+
+ // Obtener elementos
+    const toggleBtn = document.getElementById('darkModeToggle');
+    const body = document.body;
+
+    // Función para activar/desactivar modo oscuro
+    function setDarkMode(isDark) {
+        if (isDark) {
+            body.classList.add('dark-mode');
+            toggleBtn.textContent = '☀️ Modo Claro';
+        } else {
+            body.classList.remove('dark-mode');
+            toggleBtn.textContent = '🌙 Modo Oscuro';
+        }
+        // Guardar preferencia
+        localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
+    }
+
+    // Verificar preferencia guardada al cargar la página
+    const savedMode = localStorage.getItem('darkMode');
+    if (savedMode === 'enabled') {
+        setDarkMode(true);
+    } else {
+        setDarkMode(false); // valor por defecto: modo claro
+    }
+
+    // Evento click del botón
+    toggleBtn.addEventListener('click', () => {
+        const isDark = body.classList.contains('dark-mode');
+        setDarkMode(!isDark);
+    });

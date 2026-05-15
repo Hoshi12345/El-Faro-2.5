@@ -45,9 +45,10 @@ if (!function_exists('base_url')) {
     </figure>
     <h1 class="title is-4 has-text-black mt-2">Bienvenidos a periódico El Faro</h1>
     <div id="reloj-movil" class="tag is-dark is-medium mt-2">00:00:00</div>
-    
+    <!-- Nuevo botón modo oscuro -->
+    <button id="darkModeToggle" class="btn-dark-mode">🌙 Modo Oscuro</button>
   </div>
-  <div><button class="button toggle-dark mode is-light mt-2" onclick="myFunction()">Toggle Dark Mode</button></div>
+  
 </header>
 
 <header class="has-background-info py-4 is-hidden-mobile">
