@@ -704,3 +704,8 @@ label.contacto-label,
 .box time {
     color: #fff !important;
 }
+
+.dark-mode {
+  background-color: black;
+  color: white;
+}
