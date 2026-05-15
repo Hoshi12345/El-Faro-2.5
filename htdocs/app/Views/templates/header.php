@@ -45,7 +45,27 @@ if (!function_exists('base_url')) {
     </figure>
     <h1 class="title is-4 has-text-black mt-2">Bienvenidos a periódico El Faro</h1>
     <div id="reloj-movil" class="tag is-dark is-medium mt-2">00:00:00</div>
-    <!-- Botón modo oscuro (estilos inline para probar) -->
+  </div>
+  
+</header>
+
+<header class="has-background-info py-4 is-hidden-mobile">
+  <div class="container">
+    <div class="level is-mobile is-align-items-center">
+      <div class="level-left">
+        <div class="level-item">
+          <figure class="image is-64x64 mr-3">
+            <img src="https://img.freepik.com/vector-premium/pintura-faro-cielo-azul-ola-fondo_646696-5260.jpg" alt="Logo El Faro" class="is-rounded logo-faro">
+          </figure>
+        </div>
+        <div class="level-item">
+          <h1 class="title is-4 has-text-black">Bienvenidos a periódico El Faro</h1>
+        </div>
+      </div>
+      <div class="level-right">
+        <div class="level-item">
+          <div id="reloj" class="tag is-dark is-medium">00:00:00</div>
+           <!-- Botón modo oscuro (estilos inline para probar) -->
 <button id="darkModeToggle" style="background: #007bff; color: white; border: none; border-radius: 5px; padding: 5px 10px; cursor: pointer; margin-top: 5px;">
     🌙 Modo Oscuro
 </button>
@@ -71,27 +91,6 @@ if (!function_exists('base_url')) {
         }
     });
 </script>
-</div>
-  </div>
-  
-</header>
-
-<header class="has-background-info py-4 is-hidden-mobile">
-  <div class="container">
-    <div class="level is-mobile is-align-items-center">
-      <div class="level-left">
-        <div class="level-item">
-          <figure class="image is-64x64 mr-3">
-            <img src="https://img.freepik.com/vector-premium/pintura-faro-cielo-azul-ola-fondo_646696-5260.jpg" alt="Logo El Faro" class="is-rounded logo-faro">
-          </figure>
-        </div>
-        <div class="level-item">
-          <h1 class="title is-4 has-text-black">Bienvenidos a periódico El Faro</h1>
-        </div>
-      </div>
-      <div class="level-right">
-        <div class="level-item">
-          <div id="reloj" class="tag is-dark is-medium">00:00:00</div>
         </div>
       </div>
     </div>
