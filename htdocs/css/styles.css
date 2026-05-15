@@ -746,3 +746,10 @@ body.dark-mode .noticia-card {
 body.dark-mode a {
     color: #bb86fc;
 }
+
+/*prueba 2 btn*/
+
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
