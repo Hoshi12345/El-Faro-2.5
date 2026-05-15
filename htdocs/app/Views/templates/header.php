@@ -28,7 +28,7 @@ if (!function_exists('base_url')) {
     <link rel="stylesheet" href="<?= base_url('css/styles.css?v=1.935') ?>">
 
 </head>
-<body>
+<body >
 
 <div class="has-background-warning has-text-centered py-2">
     <span class="icon-text">
@@ -45,6 +45,7 @@ if (!function_exists('base_url')) {
     </figure>
     <h1 class="title is-4 has-text-black mt-2">Bienvenidos a periódico El Faro</h1>
     <div id="reloj-movil" class="tag is-dark is-medium mt-2">00:00:00</div>
+    <button class="button togle-dark mode is-light mt-2">Toggle Dark Mode</button>
   </div>
 </header>
 
