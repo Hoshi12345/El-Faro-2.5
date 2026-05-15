@@ -752,4 +752,41 @@ body.dark-mode a {
 body.dark-mode {
     background-color: #121212;
     color: #e0e0e0;
+
+    h1.title.contacto-titulo,
+.contacto-titulo {
+    color: #000 !important;
+}
+
+label.contacto-label,
+.label.contacto-label {
+    color: #ffffff !important;
+}
+.admin-titulo {
+    color: #ffffff !important;
+}
+.titulo-articulo{
+     color: #ffffff !important;
+}
+
+.th-articulo{
+    color: #ffffff !important;
+}
+
+.titulo-all-articulos{
+    color: #ffffff !important;
+}
+.th-post{
+    color: #ffffff !important;
+}
+.sin-articulos{
+    color: #ffffff !important;
+}
+
+.box .title,
+.box .subtitle,
+.box p,
+.box time {
+    color: #000000 !important;
+}
 }
