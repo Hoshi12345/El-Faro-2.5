@@ -45,7 +45,7 @@ if (!function_exists('base_url')) {
     </figure>
     <h1 class="title is-4 has-text-black mt-2">Bienvenidos a periódico El Faro</h1>
     <div id="reloj-movil" class="tag is-dark is-medium mt-2">00:00:00</div>
-    <button id="darkModeToggle" class="btn-dark-mode">🌙 Modo Oscuro</button>
+ 
   </div>
   
 </header>
@@ -68,31 +68,6 @@ if (!function_exists('base_url')) {
           <div id="reloj" class="tag is-dark is-medium">00:00:00</div>
            <!-- Botón modo oscuro (estilos inline para probar) -->
            
-<button id="darkModeToggle" style="background: #007bff; color: white; border: none; border-radius: 5px; padding: 5px 10px; cursor: pointer; margin-top: 5px;">
-    🌙 Modo Oscuro
-</button>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const btn = document.getElementById('darkModeToggle');
-        if (!btn) return;
-        btn.addEventListener('click', function() {
-            document.body.classList.toggle('dark-mode');
-            if (document.body.classList.contains('dark-mode')) {
-                btn.textContent = '☀️ Modo Claro';
-                localStorage.setItem('darkMode', 'enabled');
-            } else {
-                btn.textContent = '🌙 Modo Oscuro';
-                localStorage.setItem('darkMode', 'disabled');
-            }
-        });
-        // Recuperar estado guardado
-        if (localStorage.getItem('darkMode') === 'enabled') {
-            document.body.classList.add('dark-mode');
-            btn.textContent = '☀️ Modo Claro';
-        }
-    });
-</script>
         </div>
       </div>
     </div>
