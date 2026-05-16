@@ -36,9 +36,26 @@ actualizarReloj();
 setInterval(actualizarReloj, 1000);
 
 // ==========================================
-// INTERACTIVIDAD GENERAL
+// FUNCIÓN DEL MODO OSCURO (toggle checkbox)
 // ==========================================
+function setDarkModeFromCheckbox(isDark) {
+    // Sincronizar todos los checkboxes con id="darkModeCheckbox"
+    const checkboxes = document.querySelectorAll('#darkModeCheckbox');
+    checkboxes.forEach(cb => {
+        if (cb) cb.checked = isDark;
+    });
+    
+    if (isDark) {
+        document.body.classList.add('dark-mode');
+    } else {
+        document.body.classList.remove('dark-mode');
+    }
+    localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
+}
 
+// ==========================================
+// INTERACTIVIDAD GENERAL (incluye toggle)
+// ==========================================
 document.addEventListener('DOMContentLoaded', () => {
     // ---- Menú hamburguesa (Bulma) ----
     const navbarBurger = document.querySelector('.navbar-burger');
@@ -76,10 +93,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (btnMostrarContacto && formContacto) {
         btnMostrarContacto.addEventListener('click', () => {
             formContacto.classList.toggle('is-hidden');
-    });
-}
+        });
+    }
     
-    // ===== NUEVO: Formulario de artículo =====
+    // ===== Formulario de artículo =====
     const btnMostrarForm = document.getElementById('btnMostrarFormArticulo');
     const formularioArticulo = document.getElementById('formularioArticulo');
     if (btnMostrarForm && formularioArticulo) {
@@ -125,35 +142,16 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-});
 
- // Obtener elementos
-    const toggleBtn = document.getElementById('darkModeToggle');
-    const body = document.body;
-
-    // Función para activar/desactivar modo oscuro
-    function setDarkMode(isDark) {
-        if (isDark) {
-            body.classList.add('dark-mode');
-            toggleBtn.textContent = '☀️ Modo Claro';
-        } else {
-            body.classList.remove('dark-mode');
-            toggleBtn.textContent = '🌙 Modo Oscuro';
-        }
-        // Guardar preferencia
-        localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
-    }
-
-    // Verificar preferencia guardada al cargar la página
+    // ===== NUEVO: MODO OSCURO CON TOGGLE =====
+    // Aplicar estado guardado al cargar
     const savedMode = localStorage.getItem('darkMode');
-    if (savedMode === 'enabled') {
-        setDarkMode(true);
-    } else {
-        setDarkMode(false); // valor por defecto: modo claro
-    }
-
-    // Evento click del botón
-    toggleBtn.addEventListener('click', () => {
-        const isDark = body.classList.contains('dark-mode');
-        setDarkMode(!isDark);
+    setDarkModeFromCheckbox(savedMode === 'enabled');
+    
+    // Asignar evento a todos los checkboxes con id="darkModeCheckbox"
+    document.querySelectorAll('#darkModeCheckbox').forEach(checkbox => {
+        checkbox.addEventListener('change', function(e) {
+            setDarkModeFromCheckbox(this.checked);
+        });
     });
+});

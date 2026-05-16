@@ -121,63 +121,83 @@ body {
 }
 
 /* ============================================
-   MODO OSCURO (body.dark-mode)
+   TOGGLE SWITCH (modo oscuro)
    ============================================ */
-body.dark-mode {
-    background-color: #121212;
-    color: #e0e0e0;
+.dark-mode-toggle-container {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: 10px;
 }
 
-/* Fondo de las cards en modo oscuro */
-body.dark-mode .box.articulo-card {
-    background-color: #1e1e1e;
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
 }
 
-/* Textos dentro de las cards en modo oscuro (sin hover) */
-body.dark-mode .box.articulo-card .title,
-body.dark-mode .box.articulo-card .subtitle,
-body.dark-mode .box.articulo-card p,
-body.dark-mode .box.articulo-card span:not(.tag),
-body.dark-mode .box.articulo-card strong,
-body.dark-mode .box.articulo-card time {
-    color: #dddddd;
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
 }
 
-body.dark-mode .box.articulo-card .has-text-grey {
-    color: #aaaaaa !important;
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.3s;
+    border-radius: 34px;
 }
 
-/* Hover en modo oscuro (fondo más claro, título amarillo) */
-body.dark-mode .box.articulo-card:hover {
-    background-color: #2c2c2c;
-    transform: translateY(-4px);
-    box-shadow: 0 8px 25px rgba(255,255,255,0.1);
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.3s;
+    border-radius: 50%;
 }
 
-body.dark-mode .box.articulo-card:hover .title {
-    color: #ffcc00 !important;  /* Amarillo para resaltar */
+input:checked + .slider {
+    background-color: #4a90e2;
 }
 
-body.dark-mode .box.articulo-card:hover .subtitle,
-body.dark-mode .box.articulo-card:hover p,
-body.dark-mode .box.articulo-card:hover span:not(.tag),
-body.dark-mode .box.articulo-card:hover strong,
-body.dark-mode .box.articulo-card:hover time {
-    color: #f0f0f0 !important;
+input:checked + .slider:before {
+    transform: translateX(26px);
 }
 
-body.dark-mode .box.articulo-card:hover .has-text-grey {
-    color: #cccccc !important;
+.slider.round {
+    border-radius: 34px;
 }
 
-/* Ajustes para el botón de modo oscuro */
-body.dark-mode .btn-dark-mode {
-    background-color: #333;
-    color: #eee;
+.slider.round:before {
+    border-radius: 50%;
 }
 
-body.dark-mode .btn-dark-mode:hover {
-    background-color: #444;
+.toggle-label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #333;
+}
+
+body.dark-mode .toggle-label {
+    color: #ddd;
+}
+
+@media (max-width: 768px) {
+    .toggle-label { font-size: 0.75rem; }
+    .switch { width: 44px; height: 22px; }
+    .slider:before { height: 16px; width: 16px; }
+    input:checked + .slider:before { transform: translateX(22px); }
 }
 
 /* ============================================

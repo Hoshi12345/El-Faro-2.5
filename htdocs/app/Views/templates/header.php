@@ -45,7 +45,14 @@ if (!function_exists('base_url')) {
     </figure>
     <h1 class="title is-4 has-text-black mt-2">Bienvenidos a periódico El Faro</h1>
     <div id="reloj-movil" class="tag is-dark is-medium mt-2">00:00:00</div>
- 
+    <!-- TOGGLE MODO OSCURO -->
+    <div class="dark-mode-toggle-container">
+      <label class="switch">
+        <input type="checkbox" id="darkModeCheckbox">
+        <span class="slider round"></span>
+      </label>
+      <span class="toggle-label">Modo Oscuro</span>
+    </div>
   </div>
   
 </header>
@@ -66,7 +73,14 @@ if (!function_exists('base_url')) {
       <div class="level-right">
         <div class="level-item">
           <div id="reloj" class="tag is-dark is-medium">00:00:00</div>
-           <!-- Botón modo oscuro (estilos inline para probar) -->
+           <!-- TOGGLE MODO OSCURO -->
+          <div class="dark-mode-toggle-container">
+            <label class="switch">
+              <input type="checkbox" id="darkModeCheckbox">
+              <span class="slider round"></span>
+              </label>
+                <span class="toggle-label">Modo Oscuro</span>
+           </div>
            
         </div>
       </div>
