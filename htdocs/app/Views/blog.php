@@ -1,12 +1,19 @@
+<?php
+/**
+ * @var array $articulos
+ */
+?>
 <h1 class="title titulo-all-articulos">Todos los artículos</h1>
 
 <?php if (!empty($articulos)): ?>
     <div class="columns is-multiline">
         <?php foreach ($articulos as $post): ?>
-            <div class="column is-12 ">
-                <div class="box">
-                    <h2 class="title is-4 "><?= esc($post['title']) ?></h2>
-                    <p class="subtitle is-6 ">
+            <!-- Cambiar is-12 por is-4-desktop is-6-tablet is-12-mobile -->
+            <div class="column is-4-desktop is-6-tablet is-12-mobile">
+                <!-- Agregar la clase articulo-card -->
+                <div class="box articulo-card" data-id="<?=  $post['id'] ?>">
+                    <h2 class="title is-4"><?= esc($post['title']) ?></h2>
+                    <p class="subtitle is-6">
                         Sección: <?= esc($post['seccion']) ?> | 
                         Categoría: <?= esc($post['categoria'] ?? 'General') ?>
                     </p>
@@ -18,7 +25,12 @@
     </div>
 
     <!-- Paginación -->
-    <?= $pager->links() ?>
+    <?php if (isset($pager)): ?>
+        <?= $pager->links() ?>
+    <?php endif; ?>
 <?php else: ?>
     <p class="label sin-articulos">No hay artículos todavía.</p>
 <?php endif; ?>
+<script>
+    window.articulosData = <?= json_encode($articulos) ?>;
+</script>

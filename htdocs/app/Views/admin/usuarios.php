@@ -1,5 +1,9 @@
-<?= $this->include('templates/header') ?>
 
+<?php
+/**
+ * @var array $usuarios
+ */
+?>
 <h1 class="title admin-titulo">Usuarios registrados (contacto)</h1>
 
 <table class="table is-fullwidth is-striped tabla-usuarios">
@@ -25,4 +29,3 @@
     </tbody>
 </table>
 
-<?= $this->include('templates/footer') ?>
