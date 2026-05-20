@@ -56,3 +56,19 @@
     </div>
     <button class="modal-close is-large" aria-label="close" id="closeModalLargeBtn"></button>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.body.addEventListener('click', function(e) {
+        const card = e.target.closest('.box.articulo-card');
+        if (card) {
+            const id = card.dataset.id;
+            if (id && typeof cargarYMostrar === 'function') {
+                cargarYMostrar(id);
+            } else {
+                console.warn('No se pudo abrir el modal: cargarYMostrar no está definida o falta id');
+            }
+        }
+    });
+});
+</script>
