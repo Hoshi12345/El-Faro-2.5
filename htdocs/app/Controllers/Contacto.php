@@ -8,9 +8,7 @@ class Contacto extends BaseController
 {
     public function index()
     {
-        return view('templates/header')
-             . view('contacto')
-             . view('templates/footer');
+        return view('layouts/main', ['content' => view('contacto')]);
     }
 
     public function enviar()

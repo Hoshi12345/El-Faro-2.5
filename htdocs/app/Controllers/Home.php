@@ -15,6 +15,6 @@ class Home extends BaseController
         $data['deportes'] = $model->where('seccion', 'deportes')->orderBy('created_at', 'DESC')->findAll();
         $data['negocios'] = $model->where('seccion', 'negocios')->orderBy('created_at', 'DESC')->findAll();
 
-        return view('home', $data);
+        return view('layouts/main',['content'=> view('home',$data)]);
     }
 }

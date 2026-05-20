@@ -10,6 +10,6 @@ class Admin extends BaseController
         $modelo = new UsuarioModel();
         $data['usuarios'] = $modelo->findAll();
 
-        return view('admin/usuarios', $data);
+        return view('layouts/main', ['content' => view('admin/usuarios', $data)]);
     }
 }

@@ -8,7 +8,7 @@ class Noticias extends BaseController
     {
         $modelo = new NoticiaModel();
         $data['noticias'] = $modelo->obtenerTodos();
-        return view('noticias/lista', $data);
+        return view('layouts/main', ['content' => view('noticias/lista', $data)]);
     }
 
     public function crear()
@@ -24,6 +24,6 @@ class Noticias extends BaseController
             );
             return redirect()->to('/noticias/listar');
         }
-        return view('noticias/formulario');
+        return view('layouts/main', ['content' => view('noticias/formulario')]);
     }
 }
