@@ -45,6 +45,12 @@ function setDarkModeFromCheckbox(isDark) {
         if (cb) cb.checked = isDark;
     });
     
+    //  ACTUALIZAR EL TEXTO DEL LABEL (agregado correctamente aquí)
+    const labels = document.querySelectorAll('.toggle-label');
+    labels.forEach(label => {
+        label.textContent = isDark ? ' Modo Oscuro' : ' Modo Claro';
+    });
+    
     if (isDark) {
         document.body.classList.add('dark-mode');
     } else {
@@ -85,6 +91,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+
 
     // ---- Formulario de contacto ----
     const btnMostrarContacto = document.getElementById('btnMostrarContacto');
@@ -143,15 +151,104 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ===== NUEVO: MODO OSCURO CON TOGGLE =====
+    // ===== MODO OSCURO CON TOGGLE =====
     // Aplicar estado guardado al cargar
     const savedMode = localStorage.getItem('darkMode');
     setDarkModeFromCheckbox(savedMode === 'enabled');
     
-    // Asignar evento a todos los checkboxes con id="darkModeCheckbox"
+    // Asignar evento a todos los checkboxes
     document.querySelectorAll('#darkModeCheckbox').forEach(checkbox => {
-        checkbox.addEventListener('change', function(e) {
+        checkbox.addEventListener('change', function() {
             setDarkModeFromCheckbox(this.checked);
         });
     });
+});
+
+/// ==========================================
+// MODAL SIMPLIFICADO (con navegación)
+// ==========================================
+document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('articuloModal');
+    const modalBody = document.getElementById('modalBody');
+    const modalTitle = document.getElementById('modalTitulo');
+    const btnAnterior = document.getElementById('btnAnterior');
+    const btnSiguiente = document.getElementById('btnSiguiente');
+    
+    let currentCard = null;
+
+    async function cargarYMostrar(id) {
+        if (!id) return;
+        modalBody.innerHTML = '<div class="has-text-centered">Cargando...</div>';
+        modalTitle.textContent = 'Cargando...';
+        modal.classList.add('is-active');
+        
+        try {
+            const response = await fetch(BASE_URL + 'index.php/articulo/getArticulo/' + id);
+            if (!response.ok) throw new Error('HTTP ' + response.status);
+            const data = await response.json();
+            
+            const fecha = data.created_at ? new Date(data.created_at).toLocaleDateString('es-ES') : 'Sin fecha';
+            const imagenUrl = window.location.origin + '/el-faro 3.0/uploads/articulos/' + (data.imagen || 'default.jpg');
+            
+            const html = `
+                <div class="modal-image-container">
+                    <img src="${imagenUrl}" alt="${escapeHtml(data.title)}" class="modal-image">
+                </div>
+                <div class="categoria-tag">
+                    <span class="tag is-primary">${escapeHtml(data.categoria || 'General')}</span>
+                    <span class="tag is-info">${escapeHtml(data.seccion || 'Inicio')}</span>
+                </div>
+                <h2 class="title is-3 mt-3">${escapeHtml(data.title)}</h2>
+                <div class="metadata mb-3">
+                    <time>📅 ${fecha}</time>
+                    ${data.fuente ? `<span class="fuente ml-3">📰 Fuente: ${escapeHtml(data.fuente)}</span>` : ''}
+                </div>
+                <div class="content">
+                    ${escapeHtml(data.content).replace(/\n/g, '<br>')}
+                </div>
+            `;
+            modalBody.innerHTML = html;
+            modalTitle.textContent = data.title;
+            
+            // Actualizar los botones basados en los hermanos de la card actual
+            if (currentCard) {
+                const prevCard = currentCard.parentElement.previousElementSibling?.querySelector('.box.articulo-card');
+                const nextCard = currentCard.parentElement.nextElementSibling?.querySelector('.box.articulo-card');
+                btnAnterior.disabled = !prevCard;
+                btnSiguiente.disabled = !nextCard;
+                // Guardar referencias para navegación
+                btnAnterior.onclick = () => { if (prevCard) cargarYMostrar(prevCard.dataset.id); };
+                btnSiguiente.onclick = () => { if (nextCard) cargarYMostrar(nextCard.dataset.id); };
+            }
+        } catch (error) {
+            modalBody.innerHTML = '<div class="notification is-danger">Error al cargar la noticia: ' + error.message + '</div>';
+            modalTitle.textContent = 'Error';
+        }
+    }
+
+    function escapeHtml(str) {
+        if (!str) return '';
+        return str.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        });
+    }
+
+    // Al hacer clic en una card
+    document.body.addEventListener('click', function(e) {
+        const card = e.target.closest('.box.articulo-card');
+        if (!card) return;
+        e.preventDefault();
+        currentCard = card;
+        const id = card.dataset.id;
+        if (id) cargarYMostrar(id);
+    });
+
+    // Cerrar modal
+    const closeModal = () => modal.classList.remove('is-active');
+    document.getElementById('closeModalBtn')?.addEventListener('click', closeModal);
+    document.getElementById('closeModalLargeBtn')?.addEventListener('click', closeModal);
+    modal?.querySelector('.modal-background')?.addEventListener('click', closeModal);
 });
